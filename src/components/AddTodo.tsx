@@ -4,6 +4,7 @@ import { Input } from "./Input"
 export const AddTodo = () => {
     const [value, setValue] = useState<string>("")
     const inputRef = useRef<HTMLInputElement>(null)
+    const [todos, setTodos] = useState<string[]>([])
 
     useEffect(() => {
         if (inputRef.current) {
@@ -14,7 +15,10 @@ export const AddTodo = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        console.log(value)
+        if (value.trim() !== "") {
+            setTodos([...todos, value])
+            setValue("")
+        }
     }
 
     return (
