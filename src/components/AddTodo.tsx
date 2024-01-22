@@ -12,7 +12,6 @@ export const AddTodo = () => {
         }
     }, [])
 
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         if (value.trim() !== "") {
@@ -22,18 +21,16 @@ export const AddTodo = () => {
     }
 
     return (
-        <form className="" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Input
                     ref={inputRef}
                     value={value}
                     type="text"
-                    className=""
                     placeholder="Ajouter une tâche..."
                     onChange={(e) => setValue(e.target.value)} />
                 <button
                     type="submit"
-                    className=""
                 >Valider</button>
             </div>
         </form>
