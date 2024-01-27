@@ -13,8 +13,8 @@ export const TodoList = () => {
             :
             (
                 <ul>
-                    {todos.map((todo, index) => (
-                        <li key={index}>{todo}</li>
+                    {todos.map((todoObject) => (
+                        <li key={todoObject.id}>{todoObject.text}</li>
                     ))}
                 </ul>
             )

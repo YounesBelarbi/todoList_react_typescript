@@ -1,4 +1,5 @@
 import { createContext, useState } from "react"
+import getUid from "get-uid"
 
 interface TodoContextProps {
     todos: Todo[]
@@ -8,22 +9,27 @@ interface TodoContextProps {
 interface Todo {
     id: number
     text: string
-    status: 'pending' | 'completed'
+    status: 'undone' | 'completed'
 }
 
 export const TodoContext = createContext<TodoContextProps | undefined>(undefined)
-export const TodoProvider = (props: { children: React.ReactNode } ) => {
+export const TodoProvider = (props: { children: React.ReactNode }) => {
     const [todos, setTodos] = useState<Todo[]>([])
 
-    const addTodo = (todo: Todo) => {
-        setTodos([...todos, todo])
+    const addTodo = (text: string) => {
+        const newTodo: Todo = {
+            id: getUid(),
+            text,
+            status: 'undone'
+        }
+        setTodos([...todos, newTodo])
     }
 
     const contextValueObject = {
         todos,
         addTodo
     }
-    
+
     return (
         <TodoContext.Provider value={contextValueObject}>
             {props.children}
