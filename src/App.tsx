@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast'
 import './App.css'
 import { AddTodo } from './components/AddTodo'
 
@@ -5,7 +6,8 @@ function App() {
 
   return (
     <>
-     <AddTodo/>
+      <Toaster position='top-right' />
+      <AddTodo />
     </>
   )
 }

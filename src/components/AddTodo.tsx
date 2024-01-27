@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 import { Input } from "./Input"
+import { useTodo } from "../hooks/useTodo"
+import toast from "react-hot-toast"
 
 export const AddTodo = () => {
-    const [value, setValue] = useState<string>("")
+    const [inputValue, setInputValue] = useState<string>("")
     const inputRef = useRef<HTMLInputElement>(null)
-    const [todos, setTodos] = useState<string[]>([])
+    const { addTodo } = useTodo()
 
     useEffect(() => {
         if (inputRef.current) {
@@ -14,9 +16,12 @@ export const AddTodo = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        if (value.trim() !== "") {
-            setTodos([...todos, value])
-            setValue("")
+        if (inputValue.trim() !== "") {
+            addTodo(inputValue)
+            setInputValue("")
+            toast.success("Tâche ajoutée !")
+        } else {
+            toast.error("Le champ est vide !")
         }
     }
 
@@ -25,10 +30,10 @@ export const AddTodo = () => {
             <div>
                 <Input
                     ref={inputRef}
-                    value={value}
+                    value={inputValue}
                     type="text"
                     placeholder="Ajouter une tâche..."
-                    onChange={(e) => setValue(e.target.value)} />
+                    onChange={(e) => setInputValue(e.target.value)} />
                 <button
                     type="submit"
                 >Valider</button>
