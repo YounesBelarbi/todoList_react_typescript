@@ -1,4 +1,6 @@
 import { useTodo } from "../hooks/useTodo"
+import { motion } from "framer-motion"
+import { TodoItem } from "./TodoItem"
 
 export const TodoList = () => {
     const { todos } = useTodo()
@@ -12,11 +14,11 @@ export const TodoList = () => {
             )
             :
             (
-                <ul>
+                <motion.ul>
                     {todos.map((todoObject) => (
-                        <li key={todoObject.id}>{todoObject.text}</li>
+                        <TodoItem todo={todoObject} key={todoObject.id} />
                     ))}
-                </ul>
+                </motion.ul>
             )
     )
 }

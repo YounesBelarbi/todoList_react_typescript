@@ -6,7 +6,7 @@ interface TodoContextProps {
     addTodo: (todo: string) => void
 }
 
-interface Todo {
+export interface Todo {
     id: number
     text: string
     status: 'undone' | 'completed'
